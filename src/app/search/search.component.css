@@ -1,0 +1,84 @@
+.air-header {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 12px;
+    text-align: center;
+    -webkit-box-shadow: 0px 5px 0px -3px rgba(102,102,102,0.1);
+    -moz-box-shadow: 0px 5px 0px -3px rgba(102,102,102,0.1);
+    box-shadow: 0px 5px 0px -3px rgba(102,102,102,0.1);
+}
+
+.air-header__logo-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.air-header__logo {
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.air-search {
+    max-width: 320px;
+    position: absolute;
+    right: 20px;
+    top: calc(50% - 32px);
+}
+
+.air-search__fieldset {
+    border: none;
+}
+
+.air-search__container {
+    position: relative;
+}
+
+.air-search__input {
+    padding: 8px 40px 8px 8px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(102,102,102,0.4);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(102,102,102,0.4);
+    box-shadow: 0px 0px 1px 0px rgba(102,102,102,0.4);
+}
+
+.air-search__btn {
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    width: 27px;
+    height: 75%;
+    border-radius: 20px;
+    background: #ff5a60;
+    border: none;
+}
+
+.air-search__btn::before {
+    content: '';
+    background: url('../../assets/lupa-icono.png') no-repeat;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    display: block;
+    z-index: 2;
+    background-size: 16px 16px;
+    margin-top: 4px;
+    margin-left: 2px;
+}
+
+
+
+@media (max-width: 767px) {
+    .air-search {
+        max-width: 200px;
+    }
+    .air-header__logo-container {
+        margin: 0;
+        text-align: left;
+    }
+  }
+  
