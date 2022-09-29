@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div>
+    <i class="ico ico-screen"></i>Screen
+</div>
+
+<div *ngFor="let cities of searchResponse;let i = index" ng-if="searchResponse[i]">
+    <div class="card">
+        <a href=""routerLink="/details" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <img src="{{searchResponse[i].images.picture_url}}" alt="Avatar">
+        </a>
+      <div class="container">
+        <h4><b>{{searchResponse[i].name}}</b></h4> 
+        <h4><b>{{searchResponse[i].price.$numberDecimal}}</b></h4> 
+        <h4><b>{{searchResponse[i].address.street}}</b></h4> 
+      </div>
+    </div>
+</div>
