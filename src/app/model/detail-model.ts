@@ -14,11 +14,13 @@ export interface DetailResult {
   cleaning_fee:          Bathrooms;
   description:           string;
   extra_people:          Bathrooms;
+  first_review:          Date;
   guests_included:       Bathrooms;
   host:                  Host;
   house_rules:           string;
   images:                Images;
   interaction:           string;
+  last_review:           Date;
   last_scraped:          Date;
   listing_url:           string;
   maximum_nights:        string;
@@ -30,7 +32,7 @@ export interface DetailResult {
   price:                 Bathrooms;
   property_type:         string;
   review_scores:         ReviewScores;
-  reviews:               any[];
+  reviews:               Review[];
   room_type:             string;
   security_deposit:      Bathrooms;
   space:                 string;
@@ -76,6 +78,8 @@ export interface DetailResult {
   host_name:                 string;
   host_neighbourhood:        string;
   host_picture_url:          string;
+  host_response_rate:        number;
+  host_response_time:        string;
   host_thumbnail_url:        string;
   host_total_listings_count: number;
   host_url:                  string;
@@ -90,7 +94,24 @@ export interface DetailResult {
  }
 
  export interface ReviewScores {
+  review_scores_accuracy:      number;
+  review_scores_checkin:       number;
+  review_scores_cleanliness:   number;
+  review_scores_communication: number;
+  review_scores_location:      number;
+  review_scores_rating:        number;
+  review_scores_value:         number;
  }
+
+ export interface Review {
+  _id:           string;
+  comments:      string;
+  date:          Date;
+  listing_id:    string;
+  reviewer_id:   string;
+  reviewer_name: string;
+ }
+
   export type SearchServiceRequest = {
     position :{
       lat:number;

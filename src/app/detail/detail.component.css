@@ -5,6 +5,10 @@
   margin: 2rem;
 }
 
+.estrella::before{
+  content: "★";
+}
+
 .showPrice{
   margin: 1rem;
   border-radius: 5rem;

@@ -47,10 +47,10 @@ export class DetailComponent implements OnInit {
 
   getTotalPrice(): number{
     return (+this.detail.price.$numberDecimal * 5) +
-        (+this.detail.cleaning_fee.$numberDecimal) +
-        (+this.detail.security_deposit.$numberDecimal) +
-        (+this.detail.extra_people.$numberDecimal) +
-        (+this.detail.guests_included.$numberDecimal);
+        (+this.detail.cleaning_fee?.$numberDecimal || 0) +
+        (+this.detail.security_deposit?.$numberDecimal || 0) +
+        (+this.detail.extra_people?.$numberDecimal || 0) +
+        (+this.detail.guests_included?.$numberDecimal || 0);
   }
 
 }
