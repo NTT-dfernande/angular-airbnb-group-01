@@ -1,3 +1,46 @@
 .bold{
   font-weight: bold;
 }
+.espacio{
+  margin: 2rem;
+}
+
+.showPrice{
+  margin: 1rem;
+  border-radius: 5rem;
+  border-color:0.5px darkgrey;
+  width: auto;
+}
+.linea{
+  border: solid 0.2px grey;
+}
+.pink{
+  background-color: rgb(194, 70, 132);
+  color: white;
+  width: 100%;
+  border-color: rgb(194, 70, 132);;
+}
+
+.column-1 {
+  float: left;
+  width: 60%;
+}
+.column-2 {
+  float: left;
+  width: 40%;
+}
+
+/* Clear floats after the columns */
+.description:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.wrapper p{
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+.detalle{
+  text-align: end;
+}

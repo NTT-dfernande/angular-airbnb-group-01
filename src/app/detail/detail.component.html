@@ -1,8 +1,66 @@
 <div class="container">
-  <h1>{{detail.name}}</h1>
+  <div class="espacio"></div>
+  <h2>{{detail.name}}</h2>
+  <span *ngIf="detail.reviews.length > 0">{{detail.reviews}} evaluaciones</span>
+  <span class="bold"><a class="link-dark" href="{{detail.address.street}}">{{detail.address.street}}</a></span>
+  <div class="espacio"></div>
   <div>
-    <img src="{{detail.images.picture_url}}" alt="{{detail.name}}" class="rounded float-center">
+    <img src="{{detail.images.picture_url}}" alt="{{detail.name}}" class="rounded float-center img-fluid">
   </div>
-  <p class="bold">{{detail.space}}</p>
-  <p>{{detail.description}}</p>
+  <div class="espacio"></div>
+  <div class="description">
+    <div class="column-1">
+      <h5 class="bold">{{detail.property_type}}</h5>
+      <p>
+        <span *ngIf="detail.accommodates">{{detail.accommodates}} viajeros . </span>
+        <span *ngIf="detail.bedrooms">{{detail.bedrooms}} dormitorios . </span>
+        <span *ngIf="detail.beds">{{detail.beds}} camas . </span>
+        <span *ngIf="detail.bed_type">{{detail.bed_type}}</span>
+        <span *ngIf="detail.bathrooms">{{detail.bathrooms.$numberDecimal}} baños </span>
+      </p>
+      <div class="linea"></div>
+      <div class="espacio"></div>
+      <p>{{detail.description}}</p>
+    </div>
+    <div class="column-2">
+      <div class="shadow-lg p-3 mb-4 bg-gradient rounded showPrice">
+        <p><span class="bold">{{detail.price.$numberDecimal}}€</span> <span>/ noche</span>
+          <span *ngIf="detail.reviews.length > 0">{{detail.reviews}} evaluaciones</span>
+        </p>
+        <form [formGroup]="reservar" class="form-group">
+          <label for="llegada" class="form-label">LLEGADA</label>
+          <input id="llegada" type="date" formControlName="llegada" class="form-control">
+
+          <label for="salida" class="form-label">SALIDA</label>
+          <input id="salida" type="date" formControlName="salida" class="form-control">
+
+          <label for="viajeros" class="form-label">HUÉSPEDES</label>
+            <select class="form-select" formControlName="viajeros" selected>
+              <option ngValue="" >Selecciona número viajeros</option>
+              <option ngValue="{{i}}" *ngFor="let viajero of viajerosList; let i= index">{{viajero}}</option>
+          </select>
+
+          <div class="espacio"></div>
+          <button class="btn btn-info pink">Reservar</button>
+          <p class="text-center">No se te cobrará nada aún</p>
+          <div class="wrapper">
+            <p><span class=""><a class="link-dark" href="">{{detail.price.$numberDecimal}} € x 5 noches </a></span>
+              <span class="detalle">{{+detail.price.$numberDecimal * 5}} €</span></p>
+            <p><span class=""><a class="link-dark" href="">Gastos de limpieza </a></span>
+              <span class="detalle">{{detail.cleaning_fee.$numberDecimal}} €</span></p>
+            <p><span class=""><a class="link-dark" href="">Comisión de servicio </a></span>
+              <span class="detalle">{{detail.security_deposit.$numberDecimal}} €</span></p>
+            <p><span class=""><a class="link-dark" href="">Impuestos y tarifas sobre el alojamiento </a></span>
+              <span class="detalle">{{detail.guests_included.$numberDecimal}} €</span></p>
+            <div class="linea"></div>
+            <div class="espacio"></div>
+            <p class="bold"><span class="">Total </span>
+              <span class="detalle">{{getTotalPrice()}} €</span></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
 </div>
