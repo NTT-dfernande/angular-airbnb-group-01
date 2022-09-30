@@ -91,3 +91,9 @@ export interface DetailResult {
 
  export interface ReviewScores {
  }
+  export type SearchServiceRequest = {
+    position :{
+      lat:number;
+      lng:number;
+    }
+  }
