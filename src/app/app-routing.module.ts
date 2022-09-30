@@ -5,6 +5,7 @@ import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'list/:id', component: DetailComponent}
 ];
 

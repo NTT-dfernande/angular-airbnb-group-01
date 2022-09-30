@@ -1,16 +1,15 @@
-<div>
-    <i class="ico ico-screen"></i>Screen
-</div>
-
-<div *ngFor="let cities of searchResponse;let i = index" ng-if="searchResponse[i]">
+<div class="row row-cols-1 row-cols-md-4 g-4" ng-if="searchResponse[i]">
+  <div *ngFor="let cities of searchResponse | paginate: config;let i = index">
     <div class="card">
-        <a href=""routerLink="/details" routerLinkActive="active" ariaCurrentWhenActive="page">
-            <img src="{{searchResponse[i].images.picture_url}}" alt="Avatar">
-        </a>
+      <img src="{{searchResponse[i].images.picture_url}}" alt="Avatar" (click)="cardClick(i)">
       <div class="container">
-        <h4><b>{{searchResponse[i].name}}</b></h4> 
-        <h4><b>{{searchResponse[i].price.$numberDecimal}}</b></h4> 
-        <h4><b>{{searchResponse[i].address.street}}</b></h4> 
+        <h4><b>{{searchResponse[i].name}}</b></h4>
+        <h4><b>{{searchResponse[i].price.$numberDecimal}}</b></h4>
+        <h4><b>{{searchResponse[i].address.street}}</b></h4>
       </div>
     </div>
+  </div>
+  <div>
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
+  </div>
 </div>
