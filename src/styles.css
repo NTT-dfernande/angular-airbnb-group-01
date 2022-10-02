@@ -1,14 +1,7 @@
-@font-face {
-    font-family: Oswald-Regular;
-    src: url('/assets/fonts/Oswald-Regular.ttf');
-}
-@font-face {
-    font-family: Oswald-Bold;
-    src: url('/assets/fonts/Oswald-Bold.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
 
 body {
-    font-family: Oswald-Regular;
+    font-family: 'Oswald';
 }
 
 .u-hide-accessible {

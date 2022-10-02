@@ -9,38 +9,34 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
 
   public country!: string;
+  public url1: string;
+  public url2: string;
   public url: string;
   public cities: any;
 
   constructor(
     private httpClient: HttpClient) {
-      //this.url = 'http://www.mapquestapi.com/geocoding/v1/address?key=sXsmpMrxPy9p4skONF8kqkELEzxq2tvO&location='+this.country;
-      this.url = 'https://countriesnow.space/api/v0.1/countries'
+      this.url1 = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
+      this.url2 = '.json?proximity=ip&types=place%2Cpostcode%2Caddress&language=es&access_token=pk.eyJ1Ijoiam9zYW5jYXJoaWQiLCJhIjoiY2w4cnlla2ZlMHVmaTNvcHJtYTlwNjZsNSJ9.rEdxqxEyBd19DtS5_3Avpw';
+      this.url = '';
     }
 
   ngOnInit(): void {
-    this.httpClient.get<any>(this.url).subscribe((result: any) => {
-      this.cities = result.data;
-    });
+    
   }
 
   countryChanged(arg: any): void {
     this.country = arg;
-  }
-
-  isCountry(arg: any): any {
-    for (let i=0; i < this.cities.length; i++){
-      return this.cities[i].cities.find((element: string) => element === this.country);
-    }
-    return '';
+    this.url = this.url1 + arg + this.url2;
+    this.httpClient.get<any>(this.url).subscribe((result: any) => {
+      this.cities = result.features;
+    });
   }
 
   searchClick(): void {
     this.httpClient.get<any>(this.url).subscribe((result: any) => {
-      this.isCountry(result);
-      //localStorage.setItem('searchResponse',result.results[0].locations[0].latLng);
+      localStorage.setItem('searchResponse',result.features[0].geometry.coordinates);
     });
-    console.log(this.country);
   }
 
 }
