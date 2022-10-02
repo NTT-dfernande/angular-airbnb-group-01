@@ -1,4 +1,31 @@
+@font-face {
+    font-family: Oswald-Regular;
+    src: url('/assets/fonts/Oswald-Regular.ttf');
+}
+@font-face {
+    font-family: Oswald-Bold;
+    src: url('/assets/fonts/Oswald-Bold.ttf');
+}
+
+body {
+    font-family: Oswald-Regular;
+}
+
 .u-hide-accessible {
     position: absolute;
     left: -9999px;
 }
+
+.container-fluid {
+    max-width: 1600px;
+}
+
+.air-pagination {
+    text-align: center;
+}
+
+.air-pagination .ngx-pagination .current {
+    background: #ff5a60;
+}
+
+

@@ -1,15 +1,28 @@
-<div class="row row-cols-1 row-cols-md-4 g-4" ng-if="searchResponse[i]">
-  <div *ngFor="let cities of searchResponse | paginate: config;let i = index">
-    <div class="card">
-      <img src="{{cities.images.picture_url}}" alt="Avatar" (click)="cardClick(i)">
-      <div class="container">
-        <h4><b>{{cities.name}}</b></h4>
-        <h4><b>{{cities.price.$numberDecimal}}</b></h4>
-        <h4><b>{{cities.address.street}}</b></h4>
+<app-search></app-search>
+<main class="container-fluid">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 g-4 mt-5" *ngIf="searchResponse[0]">
+    <div *ngFor="let cities of searchResponse | paginate: config; let i = index">
+      <div class="air-card mt-5">
+        <a class="air-card__link" href="javascript:;" title="Click aquí para ver el detalle" (click)="cardClick(i)">
+          <figure class="air-card__figure">
+            <img class="air-card__img" src="{{cities.images.picture_url}}" alt="">
+          </figure>
+          <div class="air-card__container">
+            <h4 class="air-card__title">
+              <span class="air-card__title-txt air-card__title-txt--bold">{{cities.address.street}}</span>
+              <span class="air-card__title-txt">{{cities.address.suburb}}</span>
+              <span class="air-card__title-txt">{{cities.name}}</span>
+              <span class="air-card__title-txt air-card__title-txt--bold mt-2">{{cities.price.$numberDecimal}}€ <span class="air-card__title-txt air-card__title-txt--bold">noche</span></span>
+            </h4>
+          </div>
+        </a>
       </div>
     </div>
   </div>
-  <div>
-    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
+  <div class="row g-4 row-cols-1 mx-auto air-message" *ngIf="!searchResponse[0]">
+    <p class="air-message__txt">No existen resultados disponibles en la búsqueda seleccionada.</p>
   </div>
-</div>
+  <div class="row g-4 mt-5 row-cols-1 mx-auto" *ngIf="searchResponse[0]">
+    <pagination-controls class="air-pagination" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
+  </div>
+</main>

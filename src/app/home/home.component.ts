@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
       }
     };
 
-    this.searchResponse = JSON.parse(localStorage.getItem('searchResponse') ?? '[]');
+    //this.searchResponse = JSON.parse(localStorage.getItem('searchResponse') ?? '[]');
     console.log(this.searchResponse)
     this.SearchService.getApartments(this.position).subscribe(
       data => {

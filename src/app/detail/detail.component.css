@@ -1,5 +1,6 @@
 .bold{
-  font-weight: bold;
+  font-family: Oswald-Bold;
+  font-weight: 700;
 }
 .espacio{
   margin: 2rem;
@@ -7,6 +8,14 @@
 
 .estrella::before{
   content: "★";
+}
+
+.air-detail {
+  display: block;
+  position: relative;
+  margin-top: 120px;
+  font-family: Oswald-Bold;
+  font-weight: 700;
 }
 
 .showPrice{
@@ -19,18 +28,20 @@
   border: solid 0.2px grey;
 }
 .pink{
-  background-color: rgb(194, 70, 132);
+  background-color: #ff5a60;
   color: white;
   width: 100%;
-  border-color: rgb(194, 70, 132);;
+  border-color: #ff5a60;
+}
+
+.description {
+  display: flex;
 }
 
 .column-1 {
-  float: left;
   width: 60%;
 }
 .column-2 {
-  float: left;
   width: 40%;
 }
 
