@@ -104,11 +104,13 @@
       </div>
     </div>
     <div class="espacio"></div>
-    <div class="reviews" *ngFor="let review of detail.reviews; let i = index">
-      <div class="column-5">
-        <p class="nameReview">{{review.reviewer_name}}</p>
-        <p class="dateReview">{{review.date | date :'MMMM, YYYY'}}</p>
-        <p>{{review.comments}}</p>
+    <div class="reviews">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div *ngFor="let review of detail.reviews; let i = index">
+          <p class="nameReview">{{review.reviewer_name}}</p>
+          <p class="dateReview">{{review.date | date :'MMMM, YYYY'}}</p>
+          <p>{{review.comments}}</p>
+        </div>
       </div>
     </div>
     <div class="espacio"></div>
