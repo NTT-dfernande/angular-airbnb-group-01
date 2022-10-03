@@ -8,18 +8,32 @@
 .estrella::before{
   content: "★";
 }
+
 .anfitrion::before{
   content: '✪';
+}
+
+.host{width: 50%;}
+
+.img-anfitrion{
+  width: 4rem;
+  height: auto;
+  border-radius: 15em;
 }
 
 .verified, .not-verified{
   margin-left: 3rem;
 }
+
 .verified::before{
   content: '✔';
 }
+
 .not-verified::before{
   content: '✖';
+}
+.cancellation{
+  content: '';
 }
 
 .air-detail {
@@ -34,8 +48,9 @@
   border-color:0.5px darkgrey;
   width: auto;
 }
-.linea{
-  border: solid 0.2px rgb(212, 210, 210);
+.line{
+  border: solid 0.1px rgb(212, 210, 210);
+  margin: 2rem auto;
 }
 .pink{
   background-color: #ff5a60;
@@ -63,7 +78,7 @@
 }
 
 /* Clear floats after the columns */
-.description:after, .scores:after, .reviews:after {
+.description::after, .scores::after, .reviews::after {
   content: "";
   display: table;
   clear: both;
@@ -85,7 +100,7 @@
   text-align: end;
 }
 .reviews-scores::before{
-  border: ''1px solid black;
+  border: 1px solid black;
 }
 .nameReview, .dateReview{
   margin-left: 2rem;
@@ -126,6 +141,9 @@
   }
   .map-container {
     margin: 0;
+  }
+  .host{
+    width: 100%;
   }
 }
 

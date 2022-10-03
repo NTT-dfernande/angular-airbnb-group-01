@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailResult, Review } from '../model/detail-model';
 import * as L from 'leaflet';
+import { formatDistance, subDays } from 'date-fns';
 
 @Component({
   selector: 'app-detail',
@@ -21,6 +22,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
   public map: any;
   public reviewsList: Review[];
   public buttonReviews: string;
+  public days: number;
 
   constructor(private routeActivate: ActivatedRoute,
           private route: Router,
@@ -36,6 +38,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
     });
     this.reviewsList = [];
     this.buttonReviews = '';
+    this.days = 1;
   }
 
   ngOnInit(): void {
@@ -72,7 +75,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
   }
 
   getTotalPrice(): number{
-    return (+this.detail.price.$numberDecimal * 5) +
+    return (+this.detail.price.$numberDecimal * this.days) +
         (+this.detail.cleaning_fee?.$numberDecimal || 0) +
         (+this.detail.security_deposit?.$numberDecimal || 0) +
         (+this.detail.extra_people?.$numberDecimal || 0) +
@@ -86,6 +89,16 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
   seeAllReviews(): void{
     this.reviewsList = this.detail.reviews;
+  }
+
+  getDates(){
+    const llegada = this.reservar.controls['llegada'].value;
+    const salida = this.reservar.controls['salida'].value;
+    debugger;
+    if(llegada && salida && llegada > salida){
+      let time = new Date(salida).getTime() - new Date(llegada).getTime();
+      this.days = time / (1000 * 3600 * 24); //Diference in Days
+    }
   }
 
   private initMap(): void {
