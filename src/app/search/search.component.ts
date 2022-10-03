@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { SearchService} from 'src/app/services/search-service';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +17,7 @@ export class SearchComponent implements OnInit {
   public cities: any;
 
   constructor(
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient, private SearchService: SearchService) {
       this.url1 = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
       this.url2 = '.json?proximity=ip&types=place%2Cpostcode%2Caddress&language=es&access_token=pk.eyJ1Ijoiam9zYW5jYXJoaWQiLCJhIjoiY2w4cnlla2ZlMHVmaTNvcHJtYTlwNjZsNSJ9.rEdxqxEyBd19DtS5_3Avpw';
       this.url = '';
@@ -34,7 +36,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchClick(): void {
-    this.httpClient.get<any>(this.url).subscribe((result: any) => {
+    this.SearchService.getGeolocation(this.url).subscribe((result: any)=>{
       localStorage.setItem('searchResponse',result.features[0].geometry.coordinates);
     });
   }

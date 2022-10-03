@@ -11,11 +11,13 @@ import { SearchResult } from '../model/search-model';
 })
 export class HomeComponent implements OnInit {
 
-  public searchResponse: SearchResult[] = []
+  public searchPosition: SearchResult[] = []
   public page: number = 1;
   public pageSize: number = 10;
   public position: SearchServiceRequest = { position: { lat: 0, lng: 0 } }
   public config: PaginationInstance;
+  public searchResponse:String = '';
+  public splitResponse:string[] = [];
   constructor(private SearchService: SearchService, private router: Router) {
     this.config = {
       itemsPerPage: 20,
@@ -24,25 +26,22 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.position = {
-      position: {
-        lat: 41.3879,
-        lng: 2.16992
-      }
-    };
-
-    //this.searchResponse = JSON.parse(localStorage.getItem('searchResponse') ?? '[]');
+  ngOnInit(): void {    
+    this.searchResponse = localStorage.getItem('searchResponse') ?? '[]';
+    this.splitResponse = this.searchResponse.split(',',2);
+    this.position.position.lng = parseFloat(this.splitResponse[0]);
+    this.position.position.lat = parseFloat(this.splitResponse[1]);
+    
     this.SearchService.getApartments(this.position).subscribe(
       data => {
-        this.searchResponse = data
+        this.searchPosition = data
       }
     )
 
   }
 
   cardClick = (indexSearch: number) => {
-    this.router.navigate(['/list/' + this.searchResponse[indexSearch]._id]);
+    this.router.navigate(['/list/' + this.searchPosition[indexSearch]._id]);
   }
 
   onTableDataChange = (event: number) => {

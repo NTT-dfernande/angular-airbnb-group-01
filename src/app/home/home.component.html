@@ -1,7 +1,7 @@
 <app-search></app-search>
 <main class="container-fluid">
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 g-4 mt-5" *ngIf="searchResponse[0]">
-    <div *ngFor="let cities of searchResponse | paginate: config; let i = index">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-5 g-4 mt-5" *ngIf="searchPosition[0]">
+    <div *ngFor="let cities of searchPosition | paginate: config; let i = index">
       <div class="air-card mt-5">
         <a class="air-card__link" href="javascript:;" title="Click aquí para ver el detalle" (click)="cardClick(i)">
           <figure class="air-card__figure">
@@ -19,10 +19,10 @@
       </div>
     </div>
   </div>
-  <div class="row g-4 row-cols-1 mx-auto air-message" *ngIf="!searchResponse[0]">
+  <div class="row g-4 row-cols-1 mx-auto air-message" *ngIf="!searchPosition[0]">
     <p class="air-message__txt">No existen resultados disponibles en la búsqueda seleccionada.</p>
   </div>
-  <div class="row g-4 mt-5 row-cols-1 mx-auto" *ngIf="searchResponse[0]">
+  <div class="row g-4 mt-5 row-cols-1 mx-auto" *ngIf="searchPosition[0]">
     <pagination-controls class="air-pagination" previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
   </div>
 </main>

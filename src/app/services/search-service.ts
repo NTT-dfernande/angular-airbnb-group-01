@@ -15,4 +15,8 @@ export class SearchService {
   getApartments = (position:SearchServiceRequest) =>{
     return this.http.post<SearchResult[]>('https://airbnb-learning-api.herokuapp.com/search', position)
   }
+
+  getGeolocation = (url:string) =>{
+    return this.http.get<number[]>(url)
+  }
 }
