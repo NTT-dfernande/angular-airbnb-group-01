@@ -137,12 +137,12 @@
       </p>
       <p>
         <span class="estrella" *ngIf="detail.reviews.length > 0">{{detail.review_scores.review_scores_value}} </span>
-        <span class="verified text-end" *ngIf="detail.host.host_identity_verified">Identidad verificada</span>
-        <span class="not-verified text-end" *ngIf="!detail.host.host_identity_verified">Identidad no verificada</span>
+        <span class="verified text-end" *ngIf="detail.host.host_identity_verified"> Identidad verificada</span>
+        <span class="not-verified text-end" *ngIf="!detail.host.host_identity_verified"> Identidad no verificada</span>
       </p>
       <p *ngIf="detail.host.host_is_superhost">
-        <span class="antifitrion">Superanfitrión</span></p>
-      <p class="bold">
+        <span class="anfitrion"> Superanfitrión</span></p>
+      <p>
         {{detail.host.host_about}}
       </p>
       <p>Ratio de respuesta: {{detail.host.host_response_rate}} %</p>
