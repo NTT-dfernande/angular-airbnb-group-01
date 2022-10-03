@@ -59,3 +59,35 @@
 .detalle{
   text-align: end;
 }
+
+@media (max-width: 480px) {
+  .air-detail {
+    margin-top: 100px;
+  }
+  .description {
+    flex-direction: column;
+  }
+  .column-1, .column-2 {
+    display: block;
+    width: 100%;
+  }
+  .showPrice {
+    margin: 0 0 24px;
+  }
+}
+
+@media (max-width: 320px) {
+  .air-detail {
+    margin-top: 100px;
+  }
+  .description {
+    flex-direction: column;
+  }
+  .column-1, .column-2 {
+    display: block;
+    width: 100%;
+  }
+  .showPrice {
+    margin: 0 0 24px;
+  }
+}
