@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DetailResult } from '../model/detail-model';
 import * as L from 'leaflet';
 
@@ -20,7 +20,8 @@ export class DetailComponent implements OnInit {
   public reservar: FormGroup;
   public map: any;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private routeActivate: ActivatedRoute,
+          private route: Router,
             private httpClient: HttpClient,
             private fb: FormBuilder,
             public datepipe: DatePipe) {
@@ -38,12 +39,14 @@ export class DetailComponent implements OnInit {
   }
 
   getDetailById(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.routeActivate.snapshot.paramMap.get('id');
     if(id){
       this.httpClient.get<DetailResult>(this.url + id).subscribe((result: DetailResult) => {
         this.detail = result;
         this.initMap();
       });
+    }else{
+      this.route.navigate(['/home']);
     }
   }
 
