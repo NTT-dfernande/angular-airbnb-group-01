@@ -80,18 +80,18 @@
 }
 
 .map-container {
-  margin: 30px;
   width: 100%;
   height: 30rem;
 }
 
 .map-frame {
   border: 2px solid black;
-  height: 100%;
+  height: 30rem;
 }
 
 #map {
-  height: 100%;
+  width: 100%;
+  height: 30rem;
 }
 
 

@@ -104,17 +104,20 @@
       </div>
     </div>
     <div class="espacio"></div>
-    <div class="reviews">
+    <div *ngIf="detail.reviews.length > 0" class="reviews">
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div *ngFor="let review of detail.reviews; let i = index">
-          <p class="nameReview">{{review.reviewer_name}}</p>
+        <div *ngFor="let review of reviewsList; let i = index">
+          <p class="nameReview bold">{{review.reviewer_name}}</p>
           <p class="dateReview">{{review.date | date :'MMMM, YYYY'}}</p>
           <p>{{review.comments}}</p>
         </div>
       </div>
     </div>
-    <div class="espacio"></div>
-    <div class="linea"></div>
+    <div *ngIf="detail.reviews.length > 10">
+      <button class="btn btn-outline-info" (click)="seeAllReviews()">Mostrar las {{detail.reviews.length}} evaluaciones</button>
+      <div class="espacio"></div>
+    </div>
+    <div *ngIf="detail.reviews.length > 0" class="linea"></div>
     <div class="espacio"></div>
     <div class="location">
       <p class="bold">¿Donde me voy a quedar?</p>

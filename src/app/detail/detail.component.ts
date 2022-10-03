@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailResult } from '../model/detail-model';
+import { DetailResult, Review } from '../model/detail-model';
 import * as L from 'leaflet';
 
 @Component({
@@ -19,6 +19,7 @@ export class DetailComponent implements OnInit {
   public viajerosList: string[];
   public reservar: FormGroup;
   public map: any;
+  public reviewsList: Review[];
 
   constructor(private routeActivate: ActivatedRoute,
           private route: Router,
@@ -32,6 +33,7 @@ export class DetailComponent implements OnInit {
       'llegada': [],
       'viajeros':['']
     });
+    this.reviewsList = [];
   }
 
   ngOnInit(): void {
@@ -43,6 +45,15 @@ export class DetailComponent implements OnInit {
     if(id){
       this.httpClient.get<DetailResult>(this.url + id).subscribe((result: DetailResult) => {
         this.detail = result;
+        if(this.detail.reviews.length > 10){
+          let i = 0;
+          while(i < 10){
+            this.reviewsList.push(this.detail.reviews[i]);
+            i++;
+          }
+        }else{
+          this.reviewsList = this.detail.reviews;
+        }
         this.initMap();
       });
     }else{
@@ -62,6 +73,9 @@ export class DetailComponent implements OnInit {
     return Number(value);
   }
 
+  seeAllReviews(): void{
+    this.reviewsList = this.detail.reviews;
+  }
   private initMap(): void {
     this.map = L.map('map', {
       center: [ this.detail.address.location.coordinates[0], this.detail.address.location.coordinates[1] ],
