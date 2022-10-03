@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit  {
   public config: PaginationInstance;
   public searchResponse:number[] = [];
   public splitResponse:string[] = [];
+  public loading:boolean = false;
+
   constructor(private SearchService: SearchService, private router: Router) {
     this.config = {
       itemsPerPage: 20,
@@ -50,8 +52,12 @@ export class HomeComponent implements OnInit  {
   }
 
   getDataFromSearchBox = ($event: any) =>{
+    this.loading = true;
     this.searchResponse = $event;
     this.searchApartments();
+    setTimeout(() =>{
+      this.loading = false;
+    }, 1500);
   }
 
 }
