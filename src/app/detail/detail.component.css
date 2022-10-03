@@ -5,6 +5,7 @@
 .espacio{
   margin: 2rem;
 }
+
 .estrella::before{
   content: "★";
 }
@@ -66,6 +67,7 @@
 .detalle{
   text-align: end;
 }
+
 .reviews-scores{
   width: 100%;
   text-align: end;
@@ -91,6 +93,7 @@
 #map {
   height: 100%;
 }
+
 
 @media (max-width: 480px) {
   .air-detail {
