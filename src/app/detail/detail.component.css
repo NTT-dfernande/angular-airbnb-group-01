@@ -99,7 +99,7 @@
   .air-detail {
     margin-top: 100px;
   }
-  .description {
+  .description, .reviews, .location {
     flex-direction: column;
   }
   .column-1, .column-2 {
@@ -108,6 +108,12 @@
   }
   .showPrice {
     margin: 0 0 24px;
+  }
+  .column-5 {
+    width: 100%;
+  }
+  .map-container {
+    margin: 0;
   }
 }
 
@@ -115,7 +121,7 @@
   .air-detail {
     margin-top: 100px;
   }
-  .description {
+  .description, .reviews, .location {
     flex-direction: column;
   }
   .column-1, .column-2 {
@@ -124,5 +130,11 @@
   }
   .showPrice {
     margin: 0 0 24px;
+  }
+  .column-5 {
+    width: 100%;
+  }
+  .map-container {
+    margin: 0;
   }
 }
