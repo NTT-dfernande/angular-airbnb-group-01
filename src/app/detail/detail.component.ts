@@ -66,8 +66,8 @@ export class DetailComponent implements OnInit, AfterViewInit {
         }
         this.map.setView(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), 15);
         const zooMarkerPopup = L.popup().setContent("Hello there!");
-        L.marker(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), {
-        }).bindPopup(zooMarkerPopup).addTo(this.map);
+        var myIcon = L.icon({iconUrl: '../../assets/airbnb-logo.png', iconSize: [50, 50]})
+        L.marker(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), { icon: myIcon }).bindPopup(zooMarkerPopup).addTo(this.map);
       });
     }else{
       this.route.navigate(['/home']);

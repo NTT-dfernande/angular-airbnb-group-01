@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { SearchService} from 'src/app/services/search-service';
 
 @Component({
@@ -9,11 +9,14 @@ import { SearchService} from 'src/app/services/search-service';
 })
 export class SearchComponent {
 
+  @Output() searchData = new EventEmitter<any>();
+
   public country!: string;
   public url1: string;
   public url2: string;
   public url: string;
   public cities: any;
+  public searchResponse:string ='';
 
   constructor(
     private httpClient: HttpClient, private SearchService: SearchService) {
@@ -32,7 +35,8 @@ export class SearchComponent {
 
   searchClick(): void {
     this.SearchService.getGeolocation(this.url).subscribe((result: any)=>{
-      localStorage.setItem('searchResponse',result.features[0].geometry.coordinates);
+      this.searchResponse = result.features[0].geometry.coordinates 
+      this.searchData.emit(this.searchResponse);
     });
   }
 
