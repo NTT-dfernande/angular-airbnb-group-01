@@ -5,17 +5,17 @@ export interface DetailResult {
   address:               Address;
   amenities:             string[];
   availability:          Availability;
-  bathrooms:             Bathrooms;
+  bathrooms:             NumberDecimal;
   bed_type:              string;
   bedrooms:              number;
   beds:                  number;
   calendar_last_scraped: Date;
   cancellation_policy:   string;
-  cleaning_fee:          Bathrooms;
+  cleaning_fee:          NumberDecimal;
   description:           string;
-  extra_people:          Bathrooms;
+  extra_people:          NumberDecimal;
   first_review:          Date;
-  guests_included:       Bathrooms;
+  guests_included:       NumberDecimal;
   host:                  Host;
   house_rules:           string;
   images:                Images;
@@ -29,12 +29,12 @@ export interface DetailResult {
   neighborhood_overview: string;
   notes:                 string;
   number_of_reviews:     number;
-  price:                 Bathrooms;
+  price:                 NumberDecimal;
   property_type:         string;
   review_scores:         ReviewScores;
   reviews:               Review[];
   room_type:             string;
-  security_deposit:      Bathrooms;
+  security_deposit:      NumberDecimal;
   space:                 string;
   summary:               string;
   transit:               string;
@@ -63,7 +63,7 @@ export interface DetailResult {
   availability_90:  number;
  }
 
- export interface Bathrooms {
+ export interface NumberDecimal {
   $numberDecimal: string;
  }
 

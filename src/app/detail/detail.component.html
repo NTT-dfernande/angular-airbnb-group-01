@@ -1,7 +1,7 @@
 <app-header></app-header>
 <main class="container mt-5">
-  <div *ngIf="detail" class="air-detail">
-    <h2 *ngIf="detail.name" class="air-detail__title">{{detail.name}}</h2>
+  <div class="air-detail">
+    <h2 class="air-detail__title">{{detail.name}}</h2>
     <span class="estrella" *ngIf="detail.reviews.length > 0">{{detail.review_scores.review_scores_value}} · {{detail.reviews.length}} evaluaciones · </span>
     <span class="bold"> <a class="link-dark" href="#">{{detail.address.street}}</a></span>
     <div class="espacio"></div>
@@ -13,10 +13,10 @@
       <div class="column-1">
         <h5 class="bold">{{detail.property_type}}</h5>
         <p>
-          <span *ngIf="detail.accommodates">{{detail.accommodates}} viajeros · </span>
-          <span *ngIf="detail.bedrooms">{{detail.bedrooms}} dormitorios · </span>
-          <span *ngIf="detail.beds">{{detail.beds}} camas · </span>
-          <span *ngIf="detail.bathrooms">{{getFormattedString(detail.bathrooms.$numberDecimal)}} baños </span>
+          <span>{{detail.accommodates}} viajeros · </span>
+          <span>{{detail.bedrooms}} dormitorios · </span>
+          <span>{{detail.beds}} camas · </span>
+          <span>{{getFormattedString(detail.bathrooms.$numberDecimal)}} baños </span>
         </p>
         <div class="linea"></div>
         <div class="espacio"></div>
@@ -46,16 +46,16 @@
             <button class="btn btn-info pink">Reservar</button>
             <p class="text-center">No se te cobrará nada aún</p>
             <div class="wrapper">
-              <p *ngIf="detail.price">
+              <p>
                 <span><a class="link-dark" href="#">{{+detail.price.$numberDecimal | convertToDolar}} $ x 5 noches </a></span>
                 <span class="detalle">{{+detail.price.$numberDecimal * 5 | convertToDolar}} $</span></p>
-              <p *ngIf="detail.cleaning_fee">
+              <p>
                 <span><a class="link-dark" href="#">Gastos de limpieza </a></span>
                 <span class="detalle">{{+detail.cleaning_fee.$numberDecimal | convertToDolar}} $</span></p>
-              <p *ngIf="detail.security_deposit">
+              <p>
                 <span><a class="link-dark" href="#">Comisión de servicio </a></span>
                 <span class="detalle">{{+detail.security_deposit.$numberDecimal | convertToDolar}} $</span></p>
-              <p *ngIf="detail.guests_included">
+              <p>
                 <span><a class="link-dark" href="#">Impuestos y tarifas sobre el alojamiento </a></span>
                 <span class="detalle">{{+detail.guests_included.$numberDecimal | convertToDolar}} $</span></p>
               <div class="linea"></div>
@@ -75,29 +75,29 @@
     </p>
     <div class="scores">
       <div class="column-3">
-        <p *ngIf="detail.review_scores.review_scores_cleanliness">
+        <p>
           <span>Limpieza </span>
           <span class="reviews-scores">{{detail.review_scores.review_scores_cleanliness}}</span>
         </p>
-        <p *ngIf="detail.review_scores.review_scores_communication">
+        <p>
           <span>Comunicación </span>
           <span class="reviews-scores">{{detail.review_scores.review_scores_communication}}</span>
         </p>
-        <p *ngIf="detail.review_scores.review_scores_checkin">
+        <p>
             <span>Llegada </span>
             <span class="reviews-scores">{{detail.review_scores.review_scores_checkin}}</span>
         </p>
       </div>
       <div class="column-4">
-        <p *ngIf="detail.review_scores.review_scores_accuracy">
+        <p>
           <span>Veracidad </span>
           <span class="reviews-scores">{{detail.review_scores.review_scores_accuracy}}</span>
         </p>
-        <p *ngIf="detail.review_scores.review_scores_location">
+        <p>
           <span>Ubicación </span>
           <span class="reviews-scores">{{detail.review_scores.review_scores_location}}</span>
         </p>
-        <p *ngIf="detail.review_scores.review_scores_rating">
+        <p>
             <span>Calidad </span>
             <span class="reviews-scores">{{detail.review_scores.review_scores_rating}}</span>
         </p>
@@ -114,7 +114,7 @@
       </div>
     </div>
     <div *ngIf="detail.reviews.length > 10">
-      <button class="btn btn-outline-info" (click)="seeAllReviews()">Mostrar las {{detail.reviews.length}} evaluaciones</button>
+      <button class="btn btn-outline-info" (click)="seeAllReviews()">{{buttonReviews}}</button>
       <div class="espacio"></div>
     </div>
     <div *ngIf="detail.reviews.length > 0" class="linea"></div>
@@ -129,6 +129,24 @@
       <div>
         <p class="bold">{{detail.address.street}}</p>
       </div>
+    </div>
+    <div class="espacio"></div>
+    <div class="host">
+      <p class="bold"><img src="detail.host.host_thumbnail_url" alt="" >
+        <span>Anfitrión: {{detail.host.host_name}}</span>
+      </p>
+      <p>
+        <span class="estrella" *ngIf="detail.reviews.length > 0">{{detail.review_scores.review_scores_value}} </span>
+        <span class="verified text-end" *ngIf="detail.host.host_identity_verified">Identidad verificada</span>
+        <span class="not-verified text-end" *ngIf="!detail.host.host_identity_verified">Identidad no verificada</span>
+      </p>
+      <p *ngIf="detail.host.host_is_superhost">
+        <span class="antifitrion">Superanfitrión</span></p>
+      <p class="bold">
+        {{detail.host.host_about}}
+      </p>
+      <p>Ratio de respuesta: {{detail.host.host_response_rate}} %</p>
+      <p>Tiempo de respuesta: {{detail.host.host_response_time}}</p>
     </div>
   </div>
 </main>
