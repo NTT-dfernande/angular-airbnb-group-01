@@ -94,6 +94,9 @@
     .air-search {
         max-width: 210px;
     }
+    .air-search__btn {
+        right: -6px;
+    }
 }
 
 @media (max-width: 320px) {
@@ -103,5 +106,8 @@
     }
     .air-search {
         max-width: 210px;
+    }
+    .air-search__btn {
+        right: -6px;
     }
 }

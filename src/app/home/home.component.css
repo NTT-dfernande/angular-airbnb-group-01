@@ -84,3 +84,20 @@
 .air-message__txt {
     margin-bottom: 24px;
 }
+
+@media (max-width: 480px) {
+    .row.row-cols-1.g-4.mt-5 {
+        margin-top: 80px !important;
+    }
+    .air-card.mt-5 {
+        margin-top: 8px !important
+    }
+}
+@media (max-width: 320px) { 
+    .row.row-cols-1.g-4.mt-5 {
+        margin-top: 80px !important;
+    }
+    .air-card.mt-5 {
+        margin-top: 8px !important;
+    }
+}
