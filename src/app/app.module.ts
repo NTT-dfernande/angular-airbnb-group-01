@@ -10,6 +10,8 @@ import { DetailComponent } from './detail/detail.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './shared/header.component';
+import { DatePipe } from '@angular/common';
+import { ConvertToDolarPipe } from './pipes/convert-to-dolar.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { HeaderComponent } from './shared/header.component';
     HomeComponent,
     DetailComponent,
     SearchComponent,
-    HeaderComponent
+    HeaderComponent,
+    ConvertToDolarPipe
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,9 @@ import { HeaderComponent } from './shared/header.component';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

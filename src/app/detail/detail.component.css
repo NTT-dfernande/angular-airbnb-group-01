@@ -5,7 +5,6 @@
 .espacio{
   margin: 2rem;
 }
-
 .estrella::before{
   content: "★";
 }
@@ -13,9 +12,7 @@
 .air-detail {
   display: block;
   position: relative;
-  margin-top: 120px;
-  font-family: Oswald-Bold;
-  font-weight: 700;
+  margin: 120px auto;
 }
 
 .showPrice{
@@ -25,7 +22,7 @@
   width: auto;
 }
 .linea{
-  border: solid 0.2px grey;
+  border: solid 0.2px rgb(212, 210, 210);
 }
 .pink{
   background-color: #ff5a60;
@@ -34,22 +31,32 @@
   border-color: #ff5a60;
 }
 
-.description {
+.description, .scores, .reviews {
   display: flex;
 }
 
 .column-1 {
-  width: 60%;
+  width: 80%;
 }
 .column-2 {
   width: 40%;
 }
+.column-3, .column-4{
+  width: 50%;
+}
+.column-5{
+  float: left;
+  width: 40%;
+}
 
 /* Clear floats after the columns */
-.description:after {
+.description:after, .scores:after, .reviews:after {
   content: "";
   display: table;
   clear: both;
+}
+.description .estrella{
+  margin-left: 5rem;
 }
 
 .wrapper p{
@@ -58,4 +65,61 @@
 }
 .detalle{
   text-align: end;
+}
+.reviews-scores{
+  width: 100%;
+  text-align: end;
+}
+.reviews-scores::before{
+  border: ''1px solid black;
+}
+.nameReview, .dateReview{
+  margin-left: 2rem;
+}
+
+.map-container {
+  margin: 30px;
+  width: 100%;
+  height: 30rem;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+@media (max-width: 480px) {
+  .air-detail {
+    margin-top: 100px;
+  }
+  .description {
+    flex-direction: column;
+  }
+  .column-1, .column-2 {
+    display: block;
+    width: 100%;
+  }
+  .showPrice {
+    margin: 0 0 24px;
+  }
+}
+
+@media (max-width: 320px) {
+  .air-detail {
+    margin-top: 100px;
+  }
+  .description {
+    flex-direction: column;
+  }
+  .column-1, .column-2 {
+    display: block;
+    width: 100%;
+  }
+  .showPrice {
+    margin: 0 0 24px;
+  }
 }
