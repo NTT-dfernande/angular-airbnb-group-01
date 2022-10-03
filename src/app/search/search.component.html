@@ -6,15 +6,15 @@
     </div>
     <div class="air-search">
         <form method="post" action="#">
-        <fieldset class="air-search__fieldset">
-            <div class="air-search__container">
-                <label class="u-hide-accessible" for="search">Formulario de búsqueda</label>
-                <input class="air-search__input" type="search" name="search" value=""  [(ngModel)]="country" (ngModelChange)="countryChanged($event)"/>
-                <button class="air-search__btn" type="button" (click)="searchClick()">
-                    <span class="u-hide-accessible">Buscar</span>
-                </button>
-            </div>
-        </fieldset>
+            <fieldset class="air-search__fieldset">
+                <div class="air-search__container">
+                    <label class="u-hide-accessible" for="search">Formulario de búsqueda</label>
+                    <input class="air-search__input" type="search" name="search" value=""  [(ngModel)]="country" (ngModelChange)="countryChanged($event)"/>
+                    <button class="air-search__btn" type="button" (click)="searchClick()">
+                        <span class="u-hide-accessible">Buscar</span>
+                    </button>
+                </div>
+            </fieldset>
         </form>
     </div>
 </header>

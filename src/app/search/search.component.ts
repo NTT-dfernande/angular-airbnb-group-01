@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
 import { SearchService} from 'src/app/services/search-service';
 
 @Component({
@@ -8,7 +7,7 @@ import { SearchService} from 'src/app/services/search-service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
   public country!: string;
   public url1: string;
@@ -22,10 +21,6 @@ export class SearchComponent implements OnInit {
       this.url2 = '.json?proximity=ip&types=place%2Cpostcode%2Caddress&language=es&access_token=pk.eyJ1Ijoiam9zYW5jYXJoaWQiLCJhIjoiY2w4cnlla2ZlMHVmaTNvcHJtYTlwNjZsNSJ9.rEdxqxEyBd19DtS5_3Avpw';
       this.url = '';
     }
-
-  ngOnInit(): void {
-    
-  }
 
   countryChanged(arg: any): void {
     this.country = arg;
