@@ -74,18 +74,7 @@
 }
 
 
-
 @media (max-width: 767px) {
-    .air-search {
-        max-width: 200px;
-    }
-    .air-header__logo-container {
-        margin: 0;
-        text-align: left;
-    }
-}
-
-@media (max-width: 480px) {
     .air-header__logo-container {
         margin: 0 12px;
         text-align: left;
