@@ -23,7 +23,12 @@ export class HomeComponent implements OnInit {
       itemsPerPage: 20,
       currentPage: 1,
     };
-
+    this.position = {
+      position: {
+        lat: 41.3879,
+        lng: 2.16992
+      }
+    };
   }
 
   ngOnInit(): void {    
