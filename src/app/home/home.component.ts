@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   public pageSize: number = 10;
   public position: SearchServiceRequest = { position: { lat: 0, lng: 0 } }
   public config: PaginationInstance;
-  public searchResponse:String = '';
+  public searchResponse:string = '';
   public splitResponse:string[] = [];
   constructor(private SearchService: SearchService, private router: Router) {
     this.config = {
