@@ -50,13 +50,13 @@
               <p>
                 <span><a class="link-dark" href="#">{{+detail.price.$numberDecimal | convertToDolar}} $ x {{days}} noches </a></span>
                 <span class="detalle">{{+detail.price.$numberDecimal * days | convertToDolar}} $</span></p>
-              <p>
+              <p *ngIf="detail.cleaning_fee">
                 <span><a class="link-dark" href="#">Gastos de limpieza </a></span>
                 <span class="detalle">{{+detail.cleaning_fee.$numberDecimal | convertToDolar}} $</span></p>
-              <p>
+              <p *ngIf="detail.security_deposit">
                 <span><a class="link-dark" href="#">Comisión de servicio </a></span>
                 <span class="detalle">{{+detail.security_deposit.$numberDecimal | convertToDolar}} $</span></p>
-              <p>
+              <p *ngIf="detail.guests_included">
                 <span><a class="link-dark" href="#">Impuestos y tarifas sobre el alojamiento </a></span>
                 <span class="detalle">{{+detail.guests_included.$numberDecimal | convertToDolar}} $</span></p>
               <div class="line"></div>
