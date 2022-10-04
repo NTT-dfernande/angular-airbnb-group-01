@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailResult, Review } from '../model/detail-model';
 import * as L from 'leaflet';
-import { formatDistance, subDays } from 'date-fns';
 
 @Component({
   selector: 'app-detail',
