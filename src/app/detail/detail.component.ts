@@ -55,22 +55,26 @@ export class DetailComponent implements OnInit, AfterViewInit {
       this.httpClient.get<DetailResult>(this.url + id).subscribe((result: DetailResult) => {
         this.detail = result;
         this.buttonReviews = 'Mostrar las ' + this.detail.reviews.length + ' evaluaciones';
-        if(this.detail.reviews.length > 10){
-          let i = 0;
-          while(i < 10){
-            this.reviewsList.push(this.detail.reviews[i]);
-            i++;
-          }
-        }else{
-          this.reviewsList = this.detail.reviews;
-        }
+        this.getReviewsList();
         this.map.setView(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), 15);
         const zooMarkerPopup = L.popup().setContent("Hello there!");
-        var myIcon = L.icon({iconUrl: '../../assets/airbnb-logo.png', iconSize: [50, 50]})
+        let myIcon = L.icon({iconUrl: '../../assets/airbnb-logo.png', iconSize: [50, 50]})
         L.marker(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), { icon: myIcon }).bindPopup(zooMarkerPopup).addTo(this.map);
       });
     }else{
       this.route.navigate(['/home']);
+    }
+  }
+
+  private getReviewsList() {
+    if (this.detail.reviews.length > 10) {
+      let i = 0;
+      while (i < 10) {
+        this.reviewsList.push(this.detail.reviews[i]);
+        i++;
+      }
+    } else {
+      this.reviewsList = this.detail.reviews;
     }
   }
 
@@ -94,7 +98,6 @@ export class DetailComponent implements OnInit, AfterViewInit {
   getDates(){
     const llegada = this.reservar.controls['llegada'].value;
     const salida = this.reservar.controls['salida'].value;
-    debugger;
     if(llegada && salida && llegada > salida){
       let time = new Date(salida).getTime() - new Date(llegada).getTime();
       this.days = time / (1000 * 3600 * 24); //Diference in Days
