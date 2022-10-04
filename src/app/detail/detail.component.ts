@@ -98,9 +98,12 @@ export class DetailComponent implements OnInit, AfterViewInit {
   getDates(){
     const llegada = this.reservar.controls['llegada'].value;
     const salida = this.reservar.controls['salida'].value;
-    if(llegada && salida && llegada > salida){
+    if(llegada && salida){
       let time = new Date(salida).getTime() - new Date(llegada).getTime();
-      this.days = time / (1000 * 3600 * 24); //Diference in Days
+      if(time > 0){
+        this.days = time / (1000 * 3600 * 24);
+      }
+
     }
   }
 

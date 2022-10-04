@@ -32,7 +32,7 @@
 
           <form [formGroup]="reservar" class="form-group">
             <label for="llegada" class="form-label">LLEGADA</label>
-            <input id="llegada" type="date" formControlName="llegada" class="form-control">
+            <input id="llegada" type="date" formControlName="llegada" class="form-control" (ngModelChange)="getDates()">
 
             <label for="salida" class="form-label">SALIDA</label>
             <input id="salida" type="date" formControlName="salida" class="form-control" (ngModelChange)="getDates()">
