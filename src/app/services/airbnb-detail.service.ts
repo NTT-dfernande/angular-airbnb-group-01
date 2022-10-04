@@ -17,9 +17,7 @@ export class AirbnbService {
   }
 
 
-  getDetailAirbnbById(): any{
-    this.httpClient.get<DetailResult>(this.url).subscribe((result: DetailResult) => {
-      this.detail = result;
-    });
+  getDetailAirbnbById(id: string): any{
+    return this.httpClient.get<DetailResult>(this.url + id);
   }
 }
