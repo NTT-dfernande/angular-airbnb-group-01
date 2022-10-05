@@ -1,10 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailResult, Review } from '../model/detail-model';
+import { createDefaultDetail, DetailResult, Review } from '../model/detail-model';
 import * as L from 'leaflet';
+import { AirbnbService } from '../services/airbnb-detail.service';
 
 @Component({
   selector: 'app-detail',
@@ -14,21 +14,21 @@ import * as L from 'leaflet';
 export class DetailComponent implements OnInit, AfterViewInit {
 
 
-  public detail: DetailResult = this.getDetailByDefect();
-  public url: string;
+  public detail: DetailResult = createDefaultDetail();
   public viajerosList: string[];
   public reservar: FormGroup;
   public map: any;
   public reviewsList: Review[];
   public buttonReviews: string;
   public days: number;
+  public seeMore:boolean = true;
+  public seeLess:boolean = false;
 
   constructor(private routeActivate: ActivatedRoute,
           private route: Router,
-            private httpClient: HttpClient,
+            private airBnbService: AirbnbService,
             private fb: FormBuilder,
             public datepipe: DatePipe) {
-    this.url = 'https://airbnb-learning-api.herokuapp.com/listings/';
     this.viajerosList = ['1 viajero', '2 viajeros', '3 viajeros', '4 viajeros', '5 viajeros'];
     this.reservar = this.fb.group({
       'salida': [],
@@ -51,29 +51,14 @@ export class DetailComponent implements OnInit, AfterViewInit {
   getDetailById(): void {
     const id = this.routeActivate.snapshot.paramMap.get('id');
     if(id){
-      this.httpClient.get<DetailResult>(this.url + id).subscribe((result: DetailResult) => {
+      this.airBnbService.getDetailAirbnbById(id).subscribe((result: DetailResult) => {
         this.detail = result;
-        this.buttonReviews = 'Mostrar las ' + this.detail.reviews.length + ' evaluaciones';
         this.getReviewsList();
-        this.map.setView(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), 15);
-        const zooMarkerPopup = L.popup().setContent("Hello there!");
-        let myIcon = L.icon({iconUrl: '../../assets/airbnb-logo.png', iconSize: [50, 50]})
-        L.marker(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), { icon: myIcon }).bindPopup(zooMarkerPopup).addTo(this.map);
+        this.buttonReviews = 'Mostrar las ' + this.detail.reviews.length + ' evaluaciones';
+        this.initializeDetailMap();
       });
     }else{
       this.route.navigate(['/home']);
-    }
-  }
-
-  private getReviewsList() {
-    if (this.detail.reviews.length > 10) {
-      let i = 0;
-      while (i < 10) {
-        this.reviewsList.push(this.detail.reviews[i]);
-        i++;
-      }
-    } else {
-      this.reviewsList = this.detail.reviews;
     }
   }
 
@@ -92,6 +77,17 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
   seeAllReviews(): void{
     this.reviewsList = this.detail.reviews;
+    this.buttonReviews = 'Mostrar menos evaluaciones';
+    this.seeLess = true;
+    this.seeMore = false;
+  }
+
+  seeLessReviews(): void{
+    this.reviewsList = [];
+    this.getReviewsList();
+    this.buttonReviews = 'Mostrar las ' + this.detail.reviews.length + ' evaluaciones';
+    this.seeLess = false;
+    this.seeMore = true;
   }
 
   getDates(){
@@ -104,6 +100,13 @@ export class DetailComponent implements OnInit, AfterViewInit {
       }
 
     }
+  }
+
+  private initializeDetailMap() {
+    this.map.setView(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), 15);
+    const zooMarkerPopup = L.popup().setContent("Hello there!");
+    let myIcon = L.icon({ iconUrl: '../../assets/airbnb-logo.png', iconSize: [50, 50] });
+    L.marker(new L.LatLng(this.detail.address.location.coordinates[1] ?? 0, this.detail.address.location.coordinates[0] ?? 0), { icon: myIcon }).bindPopup(zooMarkerPopup).addTo(this.map);
   }
 
   private initMap(): void {
@@ -121,106 +124,16 @@ export class DetailComponent implements OnInit, AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  getDetailByDefect(): DetailResult{
-    return {
-      _id: '0',
-      access: '',
-      accommodates: 0,
-      address: {
-        country: '',
-        country_code: '',
-        government_area: '',
-        location: {
-          coordinates: [0, 0],
-          is_location_exact: true,
-          type: '',
-        },
-        market: '',
-        street: '',
-        suburb: ''
-      },
-      amenities: [],
-      availability: {
-        availability_30: 0,
-        availability_365: 0,
-        availability_60: 0,
-        availability_90: 0
-      },
-      bathrooms: {
-        $numberDecimal: ''
-      },
-      bed_type: '',
-      bedrooms: 0,
-      beds: 0,
-      calendar_last_scraped: new Date(),
-      cancellation_policy: '',
-      cleaning_fee: {
-        $numberDecimal: ''
-      },
-      description: '',
-      extra_people: {
-        $numberDecimal: ''
-      },
-      first_review: new Date(),
-      guests_included: {
-        $numberDecimal: ''
-      },
-      host: {
-        host_about: '',
-        host_has_profile_pic: false,
-        host_id: '',
-        host_identity_verified: false,
-        host_is_superhost: false,
-        host_listings_count: 0,
-        host_location: '',
-        host_name: '',
-        host_neighbourhood: '',
-        host_picture_url: '',
-        host_response_rate: 0,
-        host_response_time: '',
-        host_thumbnail_url: '',
-        host_total_listings_count: 0,
-        host_url: '',
-        host_verifications: []
-      },
-      house_rules: '',
-      images: {
-        medium_url: '',
-        picture_url: '',
-        thumbnail_url: '',
-        xl_picture_url: ''
-      },
-      interaction: '',
-      last_review: new Date(),
-      last_scraped: new Date(),
-      listing_url: '',
-      maximum_nights: '',
-      minimum_nights: '',
-      name: '',
-      neighborhood_overview: '',
-      notes: '',
-      number_of_reviews: 0,
-      price: {
-        $numberDecimal: ''
-      },
-      property_type: '',
-      review_scores: {
-        review_scores_accuracy: 0,
-        review_scores_checkin: 0,
-        review_scores_cleanliness: 0,
-        review_scores_communication: 0,
-        review_scores_location: 0,
-        review_scores_rating: 0,
-        review_scores_value: 0,
-      },
-      reviews: [],
-      room_type: '',
-      security_deposit: {
-        $numberDecimal: ''
-      },
-      space: '',
-      summary: '',
-      transit: ''
-    };
+  private getReviewsList() {
+    if (this.detail.reviews.length > 10) {
+      let i = 0;
+      while (i < 10) {
+        this.reviewsList.push(this.detail.reviews[i]);
+        i++;
+      }
+    } else {
+      this.reviewsList = this.detail.reviews;
+    }
   }
+
 }

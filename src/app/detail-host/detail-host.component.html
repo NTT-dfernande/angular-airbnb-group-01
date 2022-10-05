@@ -1,0 +1,17 @@
+<div class="host">
+  <p class="bold"><img src="{{detail.host.host_picture_url}}" class="img-anfitrion" alt="{{detail.host.host_name}}" >
+    <span> Anfitrión: {{detail.host.host_name}}</span>
+  </p>
+  <p>
+    <span class="estrella" *ngIf="detail.reviews.length > 0">{{detail.review_scores.review_scores_value}} </span>
+    <span class="verified text-end" *ngIf="detail.host.host_identity_verified"> Identidad verificada</span>
+    <span class="not-verified text-end" *ngIf="!detail.host.host_identity_verified"> Identidad no verificada</span>
+  </p>
+  <p *ngIf="detail.host.host_is_superhost">
+    <span class="anfitrion"> Superanfitrión</span></p>
+  <p>
+    {{detail.host.host_about}}
+  </p>
+  <p>Ratio de respuesta: {{detail.host.host_response_rate}} %</p>
+  <p>Tiempo de respuesta: {{detail.host.host_response_time}}</p>
+</div>

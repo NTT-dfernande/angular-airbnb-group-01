@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './shared/header.component';
 import { DatePipe } from '@angular/common';
 import { ConvertToDolarPipe } from './pipes/convert-to-dolar.pipe';
+import { DetailScoresComponent } from './detail-scores/detail-scores.component';
+import { DetailHostComponent } from './detail-host/detail-host.component';
+import { DetailLocationComponent } from './detail-location/detail-location.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ConvertToDolarPipe } from './pipes/convert-to-dolar.pipe';
     DetailComponent,
     SearchComponent,
     HeaderComponent,
-    ConvertToDolarPipe
+    ConvertToDolarPipe,
+    DetailScoresComponent,
+    DetailHostComponent,
+    DetailLocationComponent
   ],
   imports: [
     BrowserModule,

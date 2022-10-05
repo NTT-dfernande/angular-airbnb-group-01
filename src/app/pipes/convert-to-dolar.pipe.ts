@@ -5,10 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ConvertToDolarPipe implements PipeTransform {
 
-  private cambio = 0.98;
+  private change = 0.98;
 
   transform(value: number): string {
-    return (value / this.cambio).toFixed(2).toString();
+    return (value / this.change).toFixed(2).toString();
   }
 
 }

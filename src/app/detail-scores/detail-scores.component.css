@@ -1,0 +1,25 @@
+
+.scores {
+  display: flex;
+}
+
+.score-column{
+  width: 90%;
+}
+.text-scores{
+  width: 50%;
+}
+
+.column-3, .column-4{
+  width: 50%;
+}
+
+.scores::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.reviews-scores{
+  float: right;
+}

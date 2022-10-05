@@ -18,9 +18,9 @@
           <span>{{detail.beds}} camas · </span>
           <span>{{getFormattedString(detail.bathrooms.$numberDecimal)}} baños </span>
         </p>
-        <div class="line"></div>
+        <hr>
         <p><span class="cancellation"> Cancelación: {{detail.cancellation_policy}}</span></p>
-        <div class="line"></div>
+        <hr>
         <p>{{detail.description}}</p>
       </div>
       <div class="column-2">
@@ -59,7 +59,7 @@
               <p *ngIf="detail.guests_included">
                 <span><a class="link-dark" href="#">Impuestos y tarifas sobre el alojamiento </a></span>
                 <span class="detalle">{{+detail.guests_included.$numberDecimal | convertToDolar}} $</span></p>
-              <div class="line"></div>
+              <hr>
               <div class="espacio"></div>
               <p class="bold">
                 <span>Total </span>
@@ -69,42 +69,15 @@
         </div>
       </div>
     </div>
-    <div class="line"></div>
+    <hr>
     <p>
       <span class="estrella detalle" *ngIf="detail.reviews.length > 0">{{detail.review_scores.review_scores_value}} · {{detail.reviews.length}} evaluaciones</span>
     </p>
-    <div class="scores">
-      <div class="column-3">
-        <p>
-          <span>Limpieza </span>
-          <span class="reviews-scores">{{detail.review_scores.review_scores_cleanliness}}</span>
-        </p>
-        <p>
-          <span>Comunicación </span>
-          <span class="reviews-scores">{{detail.review_scores.review_scores_communication}}</span>
-        </p>
-        <p>
-            <span>Llegada </span>
-            <span class="reviews-scores">{{detail.review_scores.review_scores_checkin}}</span>
-        </p>
-      </div>
-      <div class="column-4">
-        <p>
-          <span>Veracidad </span>
-          <span class="reviews-scores">{{detail.review_scores.review_scores_accuracy}}</span>
-        </p>
-        <p>
-          <span>Ubicación </span>
-          <span class="reviews-scores">{{detail.review_scores.review_scores_location}}</span>
-        </p>
-        <p>
-            <span>Calidad </span>
-            <span class="reviews-scores">{{detail.review_scores.review_scores_rating}}</span>
-        </p>
-      </div>
-    </div>
+
+    <app-detail-scores [detail]="detail"></app-detail-scores>
+
     <div class="espacio"></div>
-    <div *ngIf="detail.reviews.length > 0" class="reviews">
+    <div class="reviews" *ngIf="detail.reviews.length > 0">
       <div class="row row-cols-1 row-cols-md-2 g-4">
         <div *ngFor="let review of reviewsList; let i = index">
           <p class="nameReview bold">{{review.reviewer_name}}</p>
@@ -114,39 +87,19 @@
       </div>
     </div>
     <div *ngIf="detail.reviews.length > 10">
-      <button class="btn btn-outline-info" (click)="seeAllReviews()">{{buttonReviews}}</button>
+      <button class="btn btn-outline-info" (click)="seeAllReviews()" *ngIf="seeMore">{{buttonReviews}}</button>
+      <button class="btn btn-outline-info" (click)="seeLessReviews()" *ngIf="seeLess">{{buttonReviews}}</button>
       <div class="espacio"></div>
     </div>
-    <div *ngIf="detail.reviews.length > 0" class="line"></div>
+    <hr *ngIf="detail.reviews.length > 0">
+
     <div class="espacio"></div>
-    <div class="location">
-      <p class="bold">¿Donde me voy a quedar?</p>
-      <div class="map-container">
-        <div class="map-frame">
-          <div id="map"></div>
-        </div>
-      </div>
-      <div>
-        <p class="bold">{{detail.address.street}}</p>
-      </div>
-    </div>
+
+    <app-detail-location [detail]="detail"></app-detail-location>
+
     <div class="espacio"></div>
-    <div class="host">
-      <p class="bold"><img src="{{detail.host.host_picture_url}}" class="img-anfitrion" alt="{{detail.host.host_name}}" >
-        <span> Anfitrión: {{detail.host.host_name}}</span>
-      </p>
-      <p>
-        <span class="estrella" *ngIf="detail.reviews.length > 0">{{detail.review_scores.review_scores_value}} </span>
-        <span class="verified text-end" *ngIf="detail.host.host_identity_verified"> Identidad verificada</span>
-        <span class="not-verified text-end" *ngIf="!detail.host.host_identity_verified"> Identidad no verificada</span>
-      </p>
-      <p *ngIf="detail.host.host_is_superhost">
-        <span class="anfitrion"> Superanfitrión</span></p>
-      <p>
-        {{detail.host.host_about}}
-      </p>
-      <p>Ratio de respuesta: {{detail.host.host_response_rate}} %</p>
-      <p>Tiempo de respuesta: {{detail.host.host_response_time}}</p>
-    </div>
+
+    <app-detail-host [detail]="detail"></app-detail-host>
+
   </div>
 </main>

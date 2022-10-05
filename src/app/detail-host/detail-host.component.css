@@ -1,0 +1,39 @@
+.host{
+  width: 50%;
+}
+
+.bold{
+  font-weight: 700;
+}
+
+.anfitrion::before{
+  content: '✪';
+}
+
+.estrella::before{
+  content: "★";
+}
+
+.img-anfitrion{
+  width: 4rem;
+  height: auto;
+  border-radius: 15em;
+}
+
+.verified, .not-verified{
+  margin-left: 3rem;
+}
+
+.verified::before{
+  content: '✔';
+}
+
+.not-verified::before{
+  content: '✖';
+}
+
+@media (max-width: 767px) {
+  .host{
+    width: 100%;
+  }
+}

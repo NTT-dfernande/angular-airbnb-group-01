@@ -118,3 +118,107 @@ export interface DetailResult {
       lng:number;
     }
   }
+
+
+  const DEFAULT_DETAIL: DetailResult = {
+    _id: '0',
+    access: '',
+    accommodates: 0,
+    address: {
+      country: '',
+      country_code: '',
+      government_area: '',
+      location: {
+        coordinates: [0, 0],
+        is_location_exact: true,
+        type: '',
+      },
+      market: '',
+      street: '',
+      suburb: ''
+    },
+    amenities: [],
+    availability: {
+      availability_30: 0,
+      availability_365: 0,
+      availability_60: 0,
+      availability_90: 0
+    },
+    bathrooms: {
+      $numberDecimal: ''
+    },
+    bed_type: '',
+    bedrooms: 0,
+    beds: 0,
+    calendar_last_scraped: new Date(),
+    cancellation_policy: '',
+    cleaning_fee: {
+      $numberDecimal: ''
+    },
+    description: '',
+    extra_people: {
+      $numberDecimal: ''
+    },
+    first_review: new Date(),
+    guests_included: {
+      $numberDecimal: ''
+    },
+    host: {
+      host_about: '',
+      host_has_profile_pic: false,
+      host_id: '',
+      host_identity_verified: false,
+      host_is_superhost: false,
+      host_listings_count: 0,
+      host_location: '',
+      host_name: '',
+      host_neighbourhood: '',
+      host_picture_url: '',
+      host_response_rate: 0,
+      host_response_time: '',
+      host_thumbnail_url: '',
+      host_total_listings_count: 0,
+      host_url: '',
+      host_verifications: []
+    },
+    house_rules: '',
+    images: {
+      medium_url: '',
+      picture_url: '',
+      thumbnail_url: '',
+      xl_picture_url: ''
+    },
+    interaction: '',
+    last_review: new Date(),
+    last_scraped: new Date(),
+    listing_url: '',
+    maximum_nights: '',
+    minimum_nights: '',
+    name: '',
+    neighborhood_overview: '',
+    notes: '',
+    number_of_reviews: 0,
+    price: {
+      $numberDecimal: ''
+    },
+    property_type: '',
+    review_scores: {
+      review_scores_accuracy: 0,
+      review_scores_checkin: 0,
+      review_scores_cleanliness: 0,
+      review_scores_communication: 0,
+      review_scores_location: 0,
+      review_scores_rating: 0,
+      review_scores_value: 0,
+    },
+    reviews: [],
+    room_type: '',
+    security_deposit: {
+      $numberDecimal: ''
+    },
+    space: '',
+    summary: '',
+    transit: ''
+  }
+
+  export const createDefaultDetail = (): DetailResult => ({...DEFAULT_DETAIL});

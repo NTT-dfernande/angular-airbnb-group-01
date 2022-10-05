@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaginationInstance } from 'ngx-pagination';
 import { SearchService } from 'src/app/services/search-service'
@@ -10,7 +10,7 @@ import { SearchComponent } from '../search/search.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent  {
   @ViewChild(SearchComponent, {static: false}) child1: SearchComponent | undefined;
 
   public searchPosition: SearchResult[] = []
@@ -29,13 +29,11 @@ export class HomeComponent implements OnInit  {
     };
   }
 
-  ngOnInit(): void { 
 
-  }
   searchApartments = () => {
     this.position.position.lng = this.searchResponse[0];
     this.position.position.lat = this.searchResponse[1];
-    
+
     this.SearchService.getApartments(this.position).subscribe(
       data => {
         this.searchPosition = data
