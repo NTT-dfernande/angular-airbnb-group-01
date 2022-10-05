@@ -8,7 +8,6 @@ import { DetailResult } from '../model/detail-model';
 export class AirbnbService {
 
 
-  public detail!: DetailResult;
   public url: string;
 
 
